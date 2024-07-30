@@ -1,5 +1,6 @@
 # Predict genre of book based on summary
-The dataset under study contains information on 16K books. It is obtained from Carnegie Mellon University dataset originally and available in Kaggle(https://www.kaggle.com/datasets/ymaricar/cmu-book-summary-dataset).The goal of this project is to identify genre of book based on book's summary. Only the following genres have major representation in the dataset : fantasy,mystery,historical,romance,thriller,humor,horror,philosophy,crime. Also the project concerns itself only with fiction genres.
+The dataset under study contains information on 16K books. It is obtained from Carnegie Mellon University dataset originally and available in Kaggle (https://www.kaggle.com/datasets/ymaricar/cmu-book-summary-dataset). The goal of this project is to identify genre of book based on book's summary. 
+Only the following genres have major representation in the dataset : fantasy,mystery,historical,romance,thriller,humor,horror,philosophy,crime. Also the project concerns itself only with fiction genres.
 
 ## 1. Business Goals
 
@@ -216,9 +217,8 @@ We will shuffle the dataframe first and then do a 75/25 train/test stratified sp
 The approach we will take to finding a good model is as follows:
 
 1. Use TFIDF Vectorizer to convert text input to numeric.
-2. Model using LogisticRegression with no hyperparam tuning with `CleanSummary`
-2. Repeat modeling with hyperparam tuning with GridSearch using LogisticRegression, SVM, MultinomialNB and Decision Trees.
-3. Repeat the above with `CleanSummaryNoPerson` as input.
+2. Use `CleanSummary` as input to model with hyperparam tuning(GridSearch) using LogisticRegression, SVM, MultinomialNB and Decision Trees.
+3. Repeat the above steps with `CleanSummaryNoPerson` as input.
 
 #### Performance metrics
 Metric used here is 'accuracy score'. Further analysis needed to see if a different metric is suitable.
