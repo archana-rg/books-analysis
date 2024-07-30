@@ -137,6 +137,8 @@ In this section, we will act on the observation and decisions taken above.
 6. Look at word clouds to see what are the common ones for a genre if any.
 7. Split the dataset into train and test.
 
+Note: To extract named entities need to keep summary text intact, hence no stemming or lemmatization is done in this initial analysis. A quick check was done as a trial and it did not result in
+high performance.
 
 #### Remove NaN
 Removing NaN from `NewGenre` column
@@ -245,6 +247,7 @@ Some next steps to further enhance the prediction are as follows:
 1. Use ensemble techniques
 2. Use deep learning techniques
 3. Explore other metrics like confusion matrix along with above techniques.
+4. Use lemmatization and stemming techniques to see if there is any benefit.
 
 
 
