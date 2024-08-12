@@ -275,7 +275,7 @@ Our pick is still LogisticRegression.
 ### With Deep Learning Techniques:
 Between Dense Layer Neural Network and Convolutional Neural Network(CNN), CNN performed better overall though it took a longer fit time. It is also the most complex model considered here.
 
-![alt text](images/dl.png)
+![alt text](images/results_dl.png)
 
 Dense Network Summary:
 
