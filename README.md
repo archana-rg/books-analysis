@@ -178,6 +178,7 @@ New column `CleanSummary` is created by combining `Title` and `Summary` and then
 
 #### Word Cloud Analysis:
 Comparing two word clouds from 'fantasy' genre.
+
 ![alt text](images/fantasy1_wc.png)
 
 ![alt text](images/fantasy2_wc.png)
@@ -226,8 +227,6 @@ The approach we will take to finding a good model is as follows:
 Metrics used here are accuracy score, confusion matrix and roc auc score.
 
 
-## 5.0 Evaluation
-
 ### Basic Machine Learning Techniques With Named Entity Intact:
 
 ![alt text](images/withne.png)
@@ -256,7 +255,7 @@ Classification Report:
 
 ![alt text](images/lgr_cr.png)
 
-The f1-score seems to be dependent on the number of training samples for each genre. Higher the sample size, higher the score. If we add more data to balance the dataset, we might get good scroes with this model.
+The f1-score seems to be dependent on the number of training samples for each genre. Higher the sample size, higher the score. If we add more data to balance the dataset, we might get good scores with this model.
 
 Confusion Matrix:
 
@@ -291,7 +290,7 @@ Comparing the fit time and performance metrics above, convolutional neural netwo
 
 ![alt text](images/results_all.png)
 
-## 6.0 Evaluation
+## 5.0 Evaluation
 In this section we predict new unseen data belonging to two lower represented genres in the training samples using all three models. The genres tested are 'humor' and 'horror'.
 
 Humor:
@@ -315,13 +314,13 @@ Top 3 genres from goodreads: Horror, Gothic, Mystery
 This one seems a bit tricky for the models. The deep learning models were able to predict within the top 3 genres the book belongs to. LogisticRegression got it wrong.
 With more training data, we might get better predictions.
 
-## 7.0 Deployment
+## 6.0 Deployment
 Based on evaluation and performance metrics, picking one of the deep learning models will be a good choice for this problem of genre prediction. The deployment should have the following:
 1. Ease of adding more training data
 2. Web application for users to enter input data and get the book genre
 3. Database backing to hold all training data
 
-## 8.0 Next Steps
+## 7.0 Next Steps
 Some next steps to expand this project:
 1. Work on deployment strategy
 2. Gather more data to make it a balanced dataset so accuracy across all genres is above 90%
