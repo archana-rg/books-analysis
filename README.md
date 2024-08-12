@@ -324,6 +324,8 @@ Some next steps to expand this project:
 1. Work on deployment strategy
 2. Gather more data to make it a balanced dataset so accuracy across all genres is above 90%
 3. Further book analysis like character extraction, quotes extraction, sentiment analysis of the content
+4. Explore more complex deep learning techniques with more layers on a system capable of handling it.
+5. Make the genre prediction a multi-label prediction as books generally belong to multiple sub-genres.
 
 
 
