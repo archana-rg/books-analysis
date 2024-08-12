@@ -136,8 +136,7 @@ In this section, we will act on the observation and decisions taken above.
 6. Look at word clouds to see what are the common ones for a genre if any.
 7. Split the dataset into train and test.
 
-Note: To extract named entities need to keep summary text intact, hence no stemming or lemmatization is done in this initial analysis. A quick check was done as a trial and it did not result in
-high performance.
+Note: To extract named entities need to keep summary text intact, hence no stemming or lemmatization is done in this initial analysis. A quick check was done with stemmed/lemmatized data and it did not result in higher performance.
 
 #### Remove NaN
 Removing NaN from `NewGenre` column
