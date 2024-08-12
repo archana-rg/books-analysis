@@ -5,8 +5,7 @@ Only the following genres have major representation in the dataset : fantasy,mys
 ## 1. Business Goals
 
 1. Predict genre of book based on book summary.
-2. Analyse what features in the summary determine the genre if such unique features exist.
-3. Report any limitations of findings
+3. Report any limitations of findings and future improvements.
 
 ## 2. Data Understanding
 Here we take an initial look at the given data and explore the quality of it.
@@ -158,7 +157,8 @@ Data columns (total 8 columns):
  ```
 
 #### Remove under-represented genres
-Removing roman, comedy and science genres
+Removing roman, comedy and science genres. Also removing 'philosophy' as it is not a main genre for fiction and 'crime' can be classified
+as 'mystery' or 'thriller' as well.
 
 ```
 NewGenre
@@ -169,8 +169,6 @@ romance        542
 thriller       488
 humor          431
 horror         397
-philosophy     121
-crime          115
 Name: count, dtype: int64
 ```
 
@@ -219,35 +217,109 @@ We will shuffle the dataframe first and then do a 75/25 train/test stratified sp
 The approach we will take to finding a good model is as follows:
 
 1. Use TFIDF Vectorizer to convert text input to numeric.
-2. Use `CleanSummary` as input to model with hyperparam tuning(GridSearch) using LogisticRegression, SVM, MultinomialNB and Decision Trees.
-3. Repeat the above steps with `CleanSummaryNoPerson` as input.
+2. Use `CleanSummary` as input to model with hyperparam tuning(GridSearch) using LogisticRegression, SVM, MultinomialNB,Decision Trees and KNN.
+3. Use the top two models from previous step with `CleanSummaryNoPerson` as input.
+4. Use ensemble techniques such as RandomForestClassifier, AdaBoost and GradientBoost.
+5. Use deep learning techniques such as Dense Neural Network and Convolutional Neural Network.
 
 #### Performance metrics
-Metric used here is 'accuracy score'. Further analysis needed to see if a different metric is suitable.
+Metrics used here are accuracy score, confusion matrix and roc auc score.
 
 
 ## 5.0 Evaluation
 
-### With Named Entity Intact:
+### Basic Machine Learning Techniques With Named Entity Intact:
 
 ![alt text](images/withne.png)
 
-DecisionTree seems to overfit on training set and perform quite poorly on test set. Logistic Regression and SVM seem to give reasonable peformance on test set.
-Still, the disparity between train and test score is quite large.
+Logistic Regression and SVM seem to give reasonable peformance on test set.Still, the disparity between train and test score is quite large.
+Going forward we will use LogisticRegression and SVM for analysis.
 
-### With PERSON named entity removed:
+### Basic Machine Learning Techniques With PERSON named entity removed:
 
 ![alt text](images/withoutne.png)
 
-No major difference here. The training score is a bit closer to test score for LogisticRegression but SVM has similar scores.
+No major difference here. But will stick to using summary with no person entities. The fit time is higher for Logistic Regression since it used GridSearch and SVM used
+HalvingRandomSearch. SVM with GridSearch was too expensive. Between these two model, will pick LogisticRegression for slightly better performance.
 
-## 6.0 Next Steps
-We haven't yet found a good model that accurately predicts the genre of book. The machine learning methods used do not give a high performance.
-Some next steps to further enhance the prediction are as follows:
-1. Use ensemble techniques
-2. Use deep learning techniques
-3. Explore other metrics like confusion matrix along with above techniques.
-4. Use lemmatization and stemming techniques to see if there is any benefit.
+Other metrics for Logistic Regression are as below:
+```
+ [Text(0, 0, 'fantasy'),
+  Text(1, 0, 'historical'),
+  Text(2, 0, 'horror'),
+  Text(3, 0, 'humor'),
+  Text(4, 0, 'mystery'),
+  Text(5, 0, 'romance'),
+  Text(6, 0, 'thriller')])
+```
+Classification Report:
+![alt text](images/lgr_cr.png)
+
+The f1-score seems to be dependent on the number of training samples for each genre. Higher the sample size, higher the score. If we add more data to balance the dataset, we might get good scroes with this model.
+
+Confusion Matrix:
+![alt text](images/lgr_cm.png)
+
+ROC AUC Score:
+Micro average is used above as the dataset is highly imbalanced. 
+
+![alt text](images/lgr_roc.png)
+
+### With Ensemble Techniques:
+Among the three ensemble techniques, gradient boost and random forest seem to give the best performance but not better than LogisticRegression.
+Our pick is still LogisticRegression.
+
+![alt text](images/results_ensemble.png)
+
+### With Deep Learning Techniques:
+Between Dense Layer Neural Network and Convolutional Neural Network(CNN), CNN performed better overall though it took a longer fit time. It is also the most complex model considered here.
+
+![alt text](images/dl.png)
+
+Dense Network Summary:
+
+![alt text](images/dense_summary.png)
+
+Convolutional Network Summary:
+
+![alt text](images/conv_summary.png)
+
+### Summary
+Comparing the fit time and performance metrics above, convolutional neural network model seems to be the best. It is also more complex and might get expensive with more data. 
+
+![alt text](images/results_all.png)
+
+## 6.0 Evaluation
+In this section we predict new unseen data belonging to two lower represented genres in the training samples using all three models. The genres tested are 'humor' and 'horror'.
+
+Humor:
+![alt text](images/humor_book.png)
+Top 3 genres from goodreads: Humor, Romance, Mystery
+
+![alt text](images/humor_pred.png)
+
+All models got the prediction correct.
+
+Horror:
+![alt text](images/horror_book.png)
+Top 3 genres from goodreads: Horror, Gothic, Mystery
+
+![alt text](images/horror_pred.png)
+
+This one seems a bit tricky for the models. The deep learning models were able to predict within the top 3 genres the book belongs to. LogisticRegression got it wrong.
+With more training data, we might get better predictions.
+
+## 7.0 Deployment
+Based on evaluation and performance metrics, picking one of the deep learning models will be a good choice for this problem of genre prediction. The deployment should have the following:
+1. Ease of adding more training data
+2. Web application for users to enter input data and get the book genre
+3. Database backing to hold all training data
+
+## 8.0 Next Steps
+Some next steps to expand this project:
+1. Work on deployment strategy
+2. Gather more data to make it a balanced dataset so accuracy across all genres is above 90%
+3. Further book analysis like character extraction, quotes extraction, sentiment analysis of the content
 
 
 
