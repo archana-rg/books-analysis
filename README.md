@@ -253,11 +253,13 @@ Other metrics for Logistic Regression are as below:
   Text(6, 0, 'thriller')])
 ```
 Classification Report:
+
 ![alt text](images/lgr_cr.png)
 
 The f1-score seems to be dependent on the number of training samples for each genre. Higher the sample size, higher the score. If we add more data to balance the dataset, we might get good scroes with this model.
 
 Confusion Matrix:
+
 ![alt text](images/lgr_cm.png)
 
 ROC AUC Score:
@@ -293,7 +295,9 @@ Comparing the fit time and performance metrics above, convolutional neural netwo
 In this section we predict new unseen data belonging to two lower represented genres in the training samples using all three models. The genres tested are 'humor' and 'horror'.
 
 Humor:
+
 ![alt text](images/humor_book.png)
+
 Top 3 genres from goodreads: Humor, Romance, Mystery
 
 ![alt text](images/humor_pred.png)
@@ -301,7 +305,9 @@ Top 3 genres from goodreads: Humor, Romance, Mystery
 All models got the prediction correct.
 
 Horror:
+
 ![alt text](images/horror_book.png)
+
 Top 3 genres from goodreads: Horror, Gothic, Mystery
 
 ![alt text](images/horror_pred.png)
